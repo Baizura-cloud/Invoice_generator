@@ -1,5 +1,11 @@
 Invoice generator where User key in the info and can export the invoice as pdf
 
+
 Current Progress:
 
-![image](https://user-images.githubusercontent.com/53967791/195284667-eed0970a-1c13-4ee3-9e18-e03d688a3847.png)
+ui: 
+![image](https://user-images.githubusercontent.com/53967791/195495112-abb99156-5a07-4a83-876a-0289754a8d74.png)
+
+ui with data:
+![image](https://user-images.githubusercontent.com/53967791/195495078-b7b3ed9c-181c-40c6-80a7-915a21d82cf7.png)
+
