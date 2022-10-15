@@ -1,16 +1,14 @@
-Invoice generator where User key in the info and can export the invoice as pdf
+This is sample invoice generator build with React Js, also included Mui, Material Table and React Hook Form.
+
+Deployed: https://invoicegenerator-c3538.web.app
+
+How to run locally:
+  1. npm install
+  2. npm run
+
+The UI: 
 
 
-Current Progress:
+![image](https://user-images.githubusercontent.com/53967791/195965247-7e94fa3e-1942-4f99-8db9-94a99990aacc.png)
 
-ui: 
-
-
-![image](https://user-images.githubusercontent.com/53967791/195495112-abb99156-5a07-4a83-876a-0289754a8d74.png)
-
-ui with data:
-
-
-
-![image](https://user-images.githubusercontent.com/53967791/195495078-b7b3ed9c-181c-40c6-80a7-915a21d82cf7.png)
 
