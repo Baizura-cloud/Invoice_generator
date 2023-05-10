@@ -1,10 +1,10 @@
 import './App.css';
-import InvoiceForm from './file/invoiceForm';
+import MainInvoice from './components/mainInvoice';
 
 function App() {
   return (
       <div className="App-header">
-        <InvoiceForm/>
+        <MainInvoice/>
       </div>
   );
 }
