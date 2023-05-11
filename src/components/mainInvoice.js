@@ -17,7 +17,8 @@ export default function MainInvoice() {
                         <Grid container
                             direction="row"
                             justifyContent="space-between"
-                            alignItems="center">
+                            alignItems="center"
+                            >
                             <TextField
                                 id="outlined-multiline-static"
                                 multiline
@@ -25,7 +26,7 @@ export default function MainInvoice() {
                                 label='Billed To:'
                                 sx={{ minWidth: 300 }}
                             />
-                            <Stack direction="column" >
+                            <Stack direction="column" spacing={2}>
                                 <TextField id="outlined-basic" label="Invoice No" variant="outlined" />
                                 <TextField id="filled-basic" variant="outlined" type='date' />
                             </Stack>
