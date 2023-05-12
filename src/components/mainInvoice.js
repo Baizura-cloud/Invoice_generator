@@ -5,6 +5,7 @@ import Card from '@mui/material/Card';
 import CardContent from '@mui/material/CardContent';
 import ModalPreview from './preview/modalPreview';
 import MainTable from './table/maintable';
+import SampleTable from './table/sampleTable';
 import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 
@@ -31,8 +32,8 @@ export default function MainInvoice() {
                                 <TextField id="filled-basic" variant="outlined" type='date' />
                             </Stack>
                         </Grid>
-
-                        <MainTable />
+                        <SampleTable/>
+                        {/* <MainTable /> */}
                         <Grid container
                             direction="row"
                             justifyContent="space-between"
