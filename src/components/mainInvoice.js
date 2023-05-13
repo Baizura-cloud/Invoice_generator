@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useState } from "react";
 import Box from '@mui/material/Box';
 import TextField from '@mui/material/TextField';
 import Card from '@mui/material/Card';
@@ -10,6 +10,28 @@ import Stack from '@mui/material/Stack';
 import { Grid } from '@mui/material';
 
 export default function MainInvoice() {
+    const [rows, setRow] = useState([]);
+    const addRowTable = () => {
+        const data = {
+            Item: "",
+            Quantity: "",
+            Price: "",
+            Total: "",
+        };
+        setRow([...rows, data]);
+    };
+    const tableRowRemove = (index) => {
+        const dataRow = [...rows];
+        dataRow.splice(index, 1);
+        setRow(dataRow);
+    };
+    const onValUpdate = (i, event) => {
+        const { name, value } = event.target;
+        const data = [...rows];
+        data[i][name] = value;
+        setRow(data);
+    };
+
     return (
         <Card sx={{ minWidth: 800, minHeight: 800 }}>
             <CardContent>
@@ -32,7 +54,7 @@ export default function MainInvoice() {
                                 <TextField id="filled-basic" variant="outlined" type='date' />
                             </Stack>
                         </Grid>
-                        <SampleTable/>
+                        <SampleTable rows={rows} onChangeval={onValUpdate} onClickAdd={addRowTable} onClickRemove={tableRowRemove} />
                         {/* <MainTable /> */}
                         <Grid container
                             direction="row"
@@ -59,10 +81,6 @@ export default function MainInvoice() {
 
                     </Stack>
                 </Box>
-
-
-
-
             </CardContent>
         </Card>
     );

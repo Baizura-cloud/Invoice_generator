@@ -11,13 +11,13 @@ import Paper from '@mui/material/Paper';
 import DeleteIcon from '@mui/icons-material/Delete';
 import TextField from '@mui/material/TextField';
 
-function TableRows({ rows, tableRowRemove, onValUpdate }) {
+function TableRows({ rows, onClickRemove, onChangeval }) {
     return rows.map((rowsData, index) => {
         const {Item, Quantity, Price, Total } = rowsData;
         return (
             <TableRow key={index}>
                 <TableCell>
-                    <IconButton onClick={() => tableRowRemove(index)} color="secondary">
+                    <IconButton onClick={() => onClickRemove(index)} color="secondary">
                         <DeleteIcon />
                     </IconButton>
                 </TableCell>
@@ -25,7 +25,7 @@ function TableRows({ rows, tableRowRemove, onValUpdate }) {
                     <TextField variant="standard"
                         type="text"
                         value={Item}
-                        onChange={(event) => onValUpdate(index, event)}
+                        onChange={(event) => onChangeval(index, event)}
                         name="Item"
                         className="form-control"
                     />
@@ -34,7 +34,7 @@ function TableRows({ rows, tableRowRemove, onValUpdate }) {
                     <TextField variant="standard"
                         type="text"
                         value={Quantity}
-                        onChange={(event) => onValUpdate(index, event)}
+                        onChange={(event) => onChangeval(index, event)}
                         name="Quantity"
                         className="form-control"
                     />
@@ -43,7 +43,7 @@ function TableRows({ rows, tableRowRemove, onValUpdate }) {
                     <TextField variant="standard"
                         type="text"
                         value={Price}
-                        onChange={(event) => onValUpdate(index, event)}
+                        onChange={(event) => onChangeval(index, event)}
                         name="Price"
                         className="form-control"
                     />
@@ -52,7 +52,7 @@ function TableRows({ rows, tableRowRemove, onValUpdate }) {
                     <TextField variant="standard"
                         type="text"
                         value={Total}
-                        onChange={(event) => onValUpdate(index, event)}
+                        onChange={(event) => onChangeval(index, event)}
                         name="Total"
                         className="form-control"
                     />
@@ -64,35 +64,35 @@ function TableRows({ rows, tableRowRemove, onValUpdate }) {
 }
 
 
-function SampleTable() {
-    const [rows, initRow] = useState([]);
-    const addRowTable = () => {
-        const data = {
-            Item: "",
-            Quantity: "",
-            Price: "",
-            Total: "",
-        };
-        initRow([...rows, data]);
-    };
-    const tableRowRemove = (index) => {
-        const dataRow = [...rows];
-        dataRow.splice(index, 1);
-        initRow(dataRow);
-    };
-    const onValUpdate = (i, event) => {
-        const { name, value } = event.target;
-        const data = [...rows];
-        data[i][name] = value;
-        initRow(data);
-    };
+function SampleTable({rows ,onChangeval, onClickAdd, onClickRemove}) {
+    // const [rows, setRow] = useState([]);
+    // const addRowTable = () => {
+    //     const data = {
+    //         Item: "",
+    //         Quantity: "",
+    //         Price: "",
+    //         Total: "",
+    //     };
+    //     setRow([...rows, data]);
+    // };
+    // const tableRowRemove = (index) => {
+    //     const dataRow = [...rows];
+    //     dataRow.splice(index, 1);
+    //     setRow(dataRow);
+    // };
+    // const onValUpdate = (i, event) => {
+    //     const { name, value } = event.target;
+    //     const data = [...rows];
+    //     data[i][name] = value;
+    //     setRow(data);
+    // };
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">
                 <TableHead>
                     <TableRow>
                         <TableCell>
-                            <IconButton color="primary" onClick={addRowTable}>
+                            <IconButton color="primary" onClick={onClickAdd}>
                                 <AddCircleIcon />
                             </IconButton>
                         </TableCell>
@@ -107,8 +107,8 @@ function SampleTable() {
                     <TableRows
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                         rows={rows}
-                        tableRowRemove={tableRowRemove}
-                        onValUpdate={onValUpdate}
+                        onClickRemove={onClickRemove}
+                        onChangeval={onChangeval}
                     />
                 </TableBody>
             </Table>
