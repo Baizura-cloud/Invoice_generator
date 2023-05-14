@@ -65,27 +65,6 @@ function TableRows({ rows, onClickRemove, onChangeval }) {
 
 
 function SampleTable({rows ,onChangeval, onClickAdd, onClickRemove}) {
-    // const [rows, setRow] = useState([]);
-    // const addRowTable = () => {
-    //     const data = {
-    //         Item: "",
-    //         Quantity: "",
-    //         Price: "",
-    //         Total: "",
-    //     };
-    //     setRow([...rows, data]);
-    // };
-    // const tableRowRemove = (index) => {
-    //     const dataRow = [...rows];
-    //     dataRow.splice(index, 1);
-    //     setRow(dataRow);
-    // };
-    // const onValUpdate = (i, event) => {
-    //     const { name, value } = event.target;
-    //     const data = [...rows];
-    //     data[i][name] = value;
-    //     setRow(data);
-    // };
     return (
         <TableContainer component={Paper}>
             <Table sx={{ minWidth: 650 }} aria-label="simple table">

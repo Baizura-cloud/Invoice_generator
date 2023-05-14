@@ -51,39 +51,29 @@ BootstrapDialogTitle.propTypes = {
 function donwloadAsPDF () {
   console.log("download as pdf logic")
 }
-export default function ModalPreview() {
-  const [open, setOpen] = React.useState(false);
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-  const handleClose = () => {
-    setOpen(false);
-  };
+export default function ModalPreview({onClose, onClickpreview, openPreview, billedTo, date, invoiceNo, addInfo, rows  }) {
 
   return (
     <div>
-      <Button variant="outlined" onClick={handleClickOpen}>
+      <Button variant="outlined" onClick={onClickpreview}>
         Preview
       </Button>
       <BootstrapDialog
-        onClose={handleClose}
+        onClose={onClose}
         aria-labelledby="customized-dialog-title"
-        open={open}
+        open={openPreview}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={handleClose}>
+        <BootstrapDialogTitle id="customized-dialog-title" onClose={onClose}>
           Invoice
         </BootstrapDialogTitle>
         <DialogContent dividers>
           <Typography gutterBottom>
-            Cras mattis consectetur purus sit amet fermentum. Cras justo odio,
-            dapibus ac facilisis in, egestas eget quam. Morbi leo risus, porta ac
-            consectetur ac, vestibulum at eros.
+            {billedTo}
           </Typography>
-          <Typography gutterBottom>
+          {/* <Typography gutterBottom>
             Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
             Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography>
+          </Typography> */}
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={donwloadAsPDF}>
