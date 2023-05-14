@@ -16,4 +16,4 @@ The UI (new version):
 
 
 
-![image](https://github.com/Baizura-cloud/Invoice_generator/assets/53967791/da1cef03-8ef2-4527-92d7-c3edae11bdb3)
+![image](https://github.com/Baizura-cloud/Invoice_generator/assets/53967791/167444a4-1718-4088-9f6d-088a6f427158)
