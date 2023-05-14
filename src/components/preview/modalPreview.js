@@ -9,6 +9,16 @@ import DialogActions from '@mui/material/DialogActions';
 import IconButton from '@mui/material/IconButton';
 import CloseIcon from '@mui/icons-material/Close';
 import Typography from '@mui/material/Typography';
+import Box from '@mui/material/Box';
+import Table from '@mui/material/Table';
+import TableBody from '@mui/material/TableBody';
+import TableCell from '@mui/material/TableCell';
+import TableContainer from '@mui/material/TableContainer';
+import TableHead from '@mui/material/TableHead';
+import TableRow from '@mui/material/TableRow';
+import Grid from '@mui/material/Grid';
+import { Stack } from '@mui/material';
+import Paper from '@mui/material/Paper';
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -48,10 +58,13 @@ BootstrapDialogTitle.propTypes = {
   onClose: PropTypes.func.isRequired,
 };
 
-function donwloadAsPDF () {
+
+function donwloadAsPDF() {
   console.log("download as pdf logic")
 }
-export default function ModalPreview({onClose, onClickpreview, openPreview, billedTo, date, invoiceNo, addInfo, rows  }) {
+
+
+export default function ModalPreview({ onClose, onClickpreview, openPreview, billedTo, date, invoiceNo, addInfo, rows }) {
 
   return (
     <div>
@@ -67,13 +80,63 @@ export default function ModalPreview({onClose, onClickpreview, openPreview, bill
           Invoice
         </BootstrapDialogTitle>
         <DialogContent dividers>
-          <Typography gutterBottom>
-            {billedTo}
-          </Typography>
-          {/* <Typography gutterBottom>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur et.
-            Vivamus sagittis lacus vel augue laoreet rutrum faucibus dolor auctor.
-          </Typography> */}
+          <Box sx={{ flexGrow: 1 }}>
+            <Grid container spacing={4}>
+              <Grid item xs={6} md={6}>
+                <Typography align='justify'>
+                  Billed to: {billedTo}
+                </Typography>
+              </Grid>
+              <Grid item xs={2} md={2}>
+              </Grid>
+              <Grid item xs={4} md={4}>
+                <Stack direction="column" spacing={2}>
+                  <Typography>
+                    Invoice No: {invoiceNo}
+                  </Typography>
+                  <Typography>
+                    Date: {date}
+                  </Typography>
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={12}>
+                <TableContainer >
+                  <Table size="small">
+                    <TableHead>
+                      <TableRow>
+                        <TableCell>Item</TableCell>
+                        <TableCell align="right">Quantity</TableCell>
+                        <TableCell align="right">Price per unit</TableCell>
+                        <TableCell align="right">Total</TableCell>
+                      </TableRow>
+                    </TableHead>
+                    <TableBody>
+                      {rows.map((row) => (
+                        <TableRow
+                          key={row.Item}
+                          sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                        >
+                          <TableCell  component="th" scope="row">
+                            {row.Item}
+                          </TableCell>
+                          <TableCell align="right">{row.Quantity}</TableCell>
+                          <TableCell align="right">{row.Price}</TableCell>
+                          <TableCell align="right">{row.Total}</TableCell>
+                        </TableRow>
+                      ))}
+                    </TableBody>
+                  </Table>
+                </TableContainer>
+              </Grid>
+              <Grid item xs={6} md={4}>
+              </Grid>
+              <Grid item xs={6} md={8}>
+                <Typography align='justify' >
+                  Additional Information: {addInfo}
+                </Typography>
+              </Grid>
+            </Grid>
+          </Box>
         </DialogContent>
         <DialogActions>
           <Button autoFocus onClick={donwloadAsPDF}>
