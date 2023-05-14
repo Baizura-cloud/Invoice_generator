@@ -10,4 +10,10 @@ How to run locally:
 
 
 The UI (new version):
+
 ![image](https://github.com/Baizura-cloud/Invoice_generator/assets/53967791/4de4c627-b3f9-4f42-a804-fd28943299a2)
+
+
+
+
+![image](https://github.com/Baizura-cloud/Invoice_generator/assets/53967791/da1cef03-8ef2-4527-92d7-c3edae11bdb3)
