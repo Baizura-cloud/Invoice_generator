@@ -1,6 +1,6 @@
-This is sample invoice generator build with React Js and MUI (WIP)
+This is sample invoice generator build with React Js and MUI
 
-Deployed: https://invoicegenerator-c3538.web.app (old version)
+Deployed: https://invoicegenerator-c3538.web.app/
 
 How to run locally:
   1. npm install
