@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React, { useRef } from 'react';
 import PropTypes from 'prop-types';
 import Button from '@mui/material/Button';
 import { styled } from '@mui/material/styles';
@@ -18,7 +18,8 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Grid from '@mui/material/Grid';
 import { Stack } from '@mui/material';
-import Paper from '@mui/material/Paper';
+import * as htmlToImage from 'html-to-image';
+import JsPDF from "jspdf";
 
 const BootstrapDialog = styled(Dialog)(({ theme }) => ({
   '& .MuiDialogContent-root': {
@@ -59,32 +60,57 @@ BootstrapDialogTitle.propTypes = {
 };
 
 
-function donwloadAsPDF() {
-  console.log("download as pdf logic")
-}
-
-
 export default function ModalPreview({ onClose, onClickpreview, openPreview, billedTo, date, invoiceNo, addInfo, rows }) {
+  const domEl = useRef(null);
+  const doc = new JsPDF({
+    format: "a4",
+    unit: "mm",
+  });
+
+  function  donwloadAsPDF(dataUrl) {
+    console.log("download as pdf logic")
+    doc.addImage(dataUrl, "PNG", 0, 0, 210, 297);
+    doc.save("invoice.pdf")
+  }
+
+  const downloadImage = async () => {
+    const dataUrl = await htmlToImage.toPng(domEl.current, {
+      width: 600,
+      height: 800
+    });
+    // console.log(dataUrl)
+    // const link = document.createElement('a');
+    // link.download = 'invoice.png';
+    // link.href = dataUrl;
+    // link.click();
+    donwloadAsPDF(dataUrl);
+  };
 
   return (
     <div>
       <Button variant="outlined" onClick={onClickpreview}>
         Preview
       </Button>
+      
       <BootstrapDialog
         onClose={onClose}
         aria-labelledby="customized-dialog-title"
         open={openPreview}
       >
-        <BootstrapDialogTitle id="customized-dialog-title" onClose={onClose}>
+        <div id="domEl" ref={domEl}>
+        <BootstrapDialogTitle id="customized-dialog-title" >
           Invoice
         </BootstrapDialogTitle>
         <DialogContent dividers>
+        
           <Box sx={{ flexGrow: 1 }}>
             <Grid container spacing={4}>
               <Grid item xs={6} md={6}>
+                <Typography  align='justify'>
+                  Billed to: 
+                </Typography>
                 <Typography align='justify'>
-                  Billed to: {billedTo}
+                {billedTo}
                 </Typography>
               </Grid>
               <Grid item xs={2} md={2}>
@@ -100,7 +126,7 @@ export default function ModalPreview({ onClose, onClickpreview, openPreview, bil
                 </Stack>
               </Grid>
               <Grid item xs={12} md={12}>
-                <TableContainer >
+                <TableContainer  >
                   <Table size="small">
                     <TableHead>
                       <TableRow>
@@ -132,18 +158,26 @@ export default function ModalPreview({ onClose, onClickpreview, openPreview, bil
               </Grid>
               <Grid item xs={6} md={8}>
                 <Typography align='justify' >
-                  Additional Information: {addInfo}
+                  Additional Information:
+                </Typography>
+                <Typography align='justify' >
+                  {addInfo}
                 </Typography>
               </Grid>
             </Grid>
           </Box>
         </DialogContent>
+        </div>
         <DialogActions>
-          <Button autoFocus onClick={donwloadAsPDF}>
+          <Button autoFocus onClick={downloadImage}>
             Download as PDF
+          </Button>
+          <Button autoFocus onClick={onClose}>
+            Close
           </Button>
         </DialogActions>
       </BootstrapDialog>
+      
     </div>
   );
 }
